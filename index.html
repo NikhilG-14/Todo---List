@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advanced ToDo List App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>My Tasks</h1>
+    <div id="headerActions" aria-label="Header actions">
+      <button title="Add Project" id="openProjectModalBtn" class="icon-button" aria-label="Add new project">
+        <span class="material-icons">add_box</span>
+      </button>
+      <button title="Settings" class="icon-button" aria-label="Settings" disabled>
+        <span class="material-icons">settings</span>
+      </button>
+    </div>
+  </header>
+
+  <aside id="sidebar" aria-label="Project navigation">
+    <header>
+      Projects
+      <button id="sidebarAddProjectBtn" class="icon-button" aria-label="Add new project">
+        <span class="material-icons">add</span>
+      </button>
+    </header>
+    <nav id="projectList" role="list" aria-live="polite" aria-relevant="additions removals">
+      <!-- Project items inserted here dynamically -->
+    </nav>
+  </aside>
+
+  <main id="main" tabindex="0" aria-label="Task list and controls">
+    <header>
+      <h2>Tasks</h2>
+      <div id="taskSearch" role="search">
+        <input type="search" id="searchInput" placeholder="Search tasks..." aria-label="Search tasks" autocomplete="off" />
+        <span class="material-icons" aria-hidden="true">search</span>
+      </div>
+    </header>
+    <section class="task-list" id="taskList" role="list" aria-live="polite" aria-relevant="additions removals">
+      <!-- Tasks inserted here dynamically -->
+    </section>
+  </main>
+
+  <aside id="detailsPanel" tabindex="0" aria-label="Selected task details" hidden>
+    <header>
+      <span id="detailsTitle">Task Details</span>
+      <button id="closeDetailsBtn" aria-label="Close task details"><span class="material-icons">close</span></button>
+    </header>
+    <input type="text" id="taskTitleInput" placeholder="Task title" aria-label="Task title" />
+    <textarea id="taskDescriptionInput" placeholder="Description (optional)" aria-label="Task description"></textarea>
+    <section aria-label="Subtasks" style="flex-grow:1;display:flex;flex-direction:column;">
+      <div id="subtaskList" role="list" aria-live="polite" aria-relevant="additions removals">
+        <!-- Subtasks dynamically generated here -->
+      </div>
+      <input type="text" id="newSubtaskInput" placeholder="Add subtask..." aria-label="Add subtask" autocomplete="off" />
+    </section>
+    <section id="timeTracker" aria-label="Time tracking controls">
+      <div class="time-display" id="timeDisplay">00:00:00</div>
+      <button id="toggleTimerBtn" aria-live="polite" aria-atomic="true">Start</button>
+      <button id="resetTimerBtn" aria-label="Reset timer">Reset</button>
+    </section>
+  </aside>
+
+  <footer>
+    <div id="bulkActions" aria-label="Bulk task actions" class="hidden">
+      <span id="bulkCount">0 selected</span>
+      <button id="bulkMarkCompleteBtn" aria-label="Mark selected tasks complete">Complete</button>
+      <button id="bulkDeleteBtn" aria-label="Delete selected tasks">Delete</button>
+    </div>
+  </footer>
+
+  <button id="floatingFab" aria-label="Add new task" title="Add new task">
+    <span class="material-icons">add</span>
+  </button>
+
+  <!-- MODALS -->
+  <div class="modal-backdrop" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle" tabindex="-1">
+    <div class="modal" role="document">
+      <h3 id="projectModalTitle">Create New Project</h3>
+      <label for="projectNameInput">Project Name</label>
+      <input type="text" id="projectNameInput" autocomplete="off" />
+      <label for="projectColorInput">Project Color</label>
+      <input type="color" id="projectColorInput" value="#f59e0b" />
+      <div class="modal-footer">
+        <button class="btn-cancel" id="cancelProjectModal">Cancel</button>
+        <button class="btn-primary" id="saveProjectBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
